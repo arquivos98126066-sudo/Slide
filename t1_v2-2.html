@@ -6,31 +6,27 @@
     <title>Os Olhos da Sabedoria</title>
     <style>
         :root {
-            --bg: #0a0f1a;
-            --surface: #141b2b;
-            --text: #e0e0e0;
-            --heading: #f0d78c;
-            --accent: #c49b3f;
-            --muted: #8892a4;
-            --border: #2a3344;
-            --table-stripe: #1a2133;
-            --quote-bg: #1a1f2e;
-            --btn-bg: #c49b3f;
-            --btn-text: #0a0f1a;
-            --btn-hover: #d4af5e;
-            --shadow: 0 4px 20px rgba(0,0,0,0.5);
+            --bg: #ffffff;
+            --surface: #f2f4f7;
+            --text: #1a1a1a;
+            --heading: #7a5a10;
+            --accent: #b5851a;
+            --muted: #6b7280;
+            --border: #d1d5db;
+            --table-stripe: #f9fafb;
+            --quote-bg: #fdf8ec;
+            --btn-bg: #b5851a;
+            --btn-text: #ffffff;
+            --btn-hover: #9a6f14;
+            --shadow: 0 4px 20px rgba(0,0,0,0.1);
             --radius: clamp(0.6rem, 1.5vw, 1rem);
             --transition: 0.3s ease;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: Georgia, 'Times New Roman', serif;
             background: var(--bg);
             color: var(--text);
             height: 100vh;
@@ -42,12 +38,7 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* SLIDES CONTAINER */
-        .slideshow {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
+        .slideshow { flex: 1; position: relative; overflow: hidden; }
 
         .slide {
             position: absolute;
@@ -65,25 +56,10 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        .slide.active {
-            opacity: 1;
-            transform: translateX(0);
-            pointer-events: auto;
-            z-index: 2;
-        }
+        .slide.active { opacity: 1; transform: translateX(0); pointer-events: auto; z-index: 2; }
+        .slide.prev   { transform: translateX(-30px); opacity: 0; z-index: 1; }
 
-        .slide.prev {
-            transform: translateX(-30px);
-            opacity: 0;
-            z-index: 1;
-        }
-
-        /* SLIDE INNER CONTENT */
-        .slide-content {
-            max-width: 900px;
-            margin: 0 auto;
-            width: 100%;
-        }
+        .slide-content { max-width: 900px; margin: 0 auto; width: 100%; }
 
         h1 {
             font-size: clamp(2rem, 6vw, 3.5rem);
@@ -94,46 +70,40 @@
         }
 
         h2 {
-            font-size: clamp(1.4rem, 4vw, 2rem);
+            font-size: clamp(1.25rem, 3.5vw, 1.75rem);
             color: var(--heading);
-            margin: 0.5em 0 0.8em;
+            margin: 0.3em 0 0.6em;
             line-height: 1.3;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 0.3em;
-            display: inline-block;
         }
 
         h3 {
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
             color: var(--accent);
             margin: 1em 0 0.5em;
             line-height: 1.3;
         }
 
         p {
-            margin-bottom: 1em;
-            line-height: 1.6;
-            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            margin-bottom: 1.2em;
+            line-height: 1.85;
+            font-size: clamp(1.05rem, 2.8vw, 1.2rem);
         }
 
         .verse {
             font-weight: 700;
             color: var(--heading);
-            font-size: clamp(1rem, 2.8vw, 1.3rem);
+            font-size: clamp(1.05rem, 2.8vw, 1.3rem);
             margin: 0.8em 0 0.2em;
         }
 
         ul, ol {
-            margin: 0.5em 0 1em 1.5em;
-            line-height: 1.7;
-            font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+            margin: 0.6em 0 1.2em 1.5em;
+            line-height: 2;
+            font-size: clamp(1rem, 2.6vw, 1.15rem);
         }
 
-        li {
-            margin-bottom: 0.4em;
-        }
+        li { margin-bottom: 0.6em; }
 
-        /* TABLES */
         .table-wrapper {
             overflow-x: auto;
             margin: 1.2em 0;
@@ -142,12 +112,7 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: clamp(0.8rem, 2vw, 1rem);
-            min-width: 320px;
-        }
+        table { width: 100%; border-collapse: collapse; font-size: clamp(0.8rem, 2vw, 1rem); min-width: 320px; }
 
         th {
             background: var(--accent);
@@ -158,16 +123,9 @@
             white-space: nowrap;
         }
 
-        td {
-            padding: 0.65em 0.8em;
-            border-bottom: 1px solid var(--border);
-        }
+        td { padding: 0.65em 0.8em; border-bottom: 1px solid var(--border); }
+        tr:nth-child(even) td { background: var(--table-stripe); }
 
-        tr:nth-child(even) td {
-            background: var(--table-stripe);
-        }
-
-        /* QUOTES */
         blockquote {
             background: var(--quote-bg);
             border-left: 4px solid var(--accent);
@@ -175,7 +133,7 @@
             margin: 1.2em 0;
             border-radius: 0 var(--radius) var(--radius) 0;
             font-style: italic;
-            color: #c0c8d8;
+            color: #374151;
             line-height: 1.6;
             font-size: clamp(0.85rem, 2.2vw, 1rem);
         }
@@ -188,7 +146,6 @@
             font-size: 0.9em;
         }
 
-        /* GLOSSARY / LISTS */
         .glossary dt {
             font-weight: 700;
             color: var(--heading);
@@ -199,15 +156,12 @@
             margin-left: 1em;
             margin-bottom: 0.6em;
             line-height: 1.6;
-            color: #c8d0dc;
+            color: #374151;
         }
 
-        /* NAVIGATION BUTTONS FIXED */
         .nav-bar {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            bottom: 0; left: 0; right: 0;
             background: var(--surface);
             border-top: 1px solid var(--border);
             display: flex;
@@ -216,8 +170,7 @@
             gap: clamp(1rem, 4vw, 2rem);
             padding: 0.8rem 1rem;
             z-index: 100;
-            box-shadow: 0 -2px 12px rgba(0,0,0,0.4);
-            height: auto;
+            box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
         }
 
         .nav-btn {
@@ -238,18 +191,9 @@
             touch-action: manipulation;
             white-space: nowrap;
         }
-
-        .nav-btn:active {
-            transform: scale(0.96);
-            background: var(--btn-hover);
-        }
-        .nav-btn:disabled {
-            opacity: 0.4;
-            pointer-events: none;
-        }
-        .nav-btn:hover:not(:disabled) {
-            background: var(--btn-hover);
-        }
+        .nav-btn:active    { transform: scale(0.96); background: var(--btn-hover); }
+        .nav-btn:disabled  { opacity: 0.4; pointer-events: none; }
+        .nav-btn:hover:not(:disabled) { background: var(--btn-hover); }
 
         .progress-indicator {
             font-size: clamp(0.8rem, 2vw, 0.95rem);
@@ -258,25 +202,6 @@
             white-space: nowrap;
         }
 
-        .dots {
-            display: flex;
-            gap: 0.4rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .dot {
-            width: clamp(8px, 2vw, 10px);
-            height: clamp(8px, 2vw, 10px);
-            border-radius: 50%;
-            background: #4a5568;
-            transition: background 0.2s;
-        }
-        .dot.active-dot {
-            background: var(--accent);
-            box-shadow: 0 0 6px var(--accent);
-        }
-
-        /* CAPA SPECIAL */
         .capa {
             display: flex;
             flex-direction: column;
@@ -288,7 +213,7 @@
         .capa h1 {
             font-size: clamp(2.5rem, 8vw, 4.5rem);
             margin-bottom: 0.2em;
-            text-shadow: 0 0 20px rgba(240, 215, 140, 0.3);
+            text-shadow: 0 0 20px rgba(240,215,140,0.3);
         }
         .capa .subtitle {
             font-size: clamp(1rem, 3vw, 1.5rem);
@@ -296,8 +221,8 @@
             letter-spacing: 0.05em;
         }
 
+        .slide[data-img-slide="1"] { background: #ffffff !important; }
 
-        /* BOTÃO IMAGEM MINIMALISTA */
         .img-slide-btn {
             background: none;
             border: none;
@@ -315,29 +240,43 @@
             touch-action: manipulation;
             opacity: 0.7;
         }
-        .img-slide-btn:hover { color: var(--accent); background: rgba(196,155,63,0.1); opacity: 1; }
+        .img-slide-btn:hover  { color: var(--accent); background: rgba(196,155,63,0.1); opacity: 1; }
         .img-slide-btn:active { transform: scale(0.92); }
 
-        /* SLIDE DE IMAGEM - tela cheia */
         .slide-image-full {
             position: absolute;
             inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #000;
+            background: #ffffff !important;
             overflow: hidden;
         }
-        .slide-image-full img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
+        .slide-image-full img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+        .slide-img-copy {
+            position: absolute;
+            bottom: 0.8rem; right: 0.8rem;
+            background: rgba(0,0,0,0.55);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 2rem;
+            padding: 0.4em 1em;
+            font-size: 0.8rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.2s;
+            touch-action: manipulation;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
+        .slide-img-copy:hover  { background: rgba(0,0,0,0.8); }
+        .slide-img-copy.copied { background: rgba(40,140,60,0.85); }
+
         .slide-img-remove {
             position: absolute;
-            top: 0.6rem;
-            right: 0.6rem;
+            top: 0.6rem; right: 0.6rem;
             background: rgba(0,0,0,0.55);
             color: #fff;
             border: 1px solid rgba(255,255,255,0.2);
@@ -351,7 +290,6 @@
         }
         .slide-img-remove:hover { background: rgba(180,30,30,0.7); }
 
-        /* MODAL ESCOLHA ANTES/DEPOIS */
         .img-position-overlay {
             display: none;
             position: fixed;
@@ -363,6 +301,7 @@
             padding: 1.5rem;
         }
         .img-position-overlay.open { display: flex; }
+
         .img-position-modal {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -379,11 +318,8 @@
             font-weight: 600;
             margin-bottom: 1.2rem;
         }
-        .img-position-modal .pos-btns {
-            display: flex;
-            gap: 0.8rem;
-            justify-content: center;
-        }
+        .img-position-modal .pos-btns { display: flex; gap: 0.8rem; justify-content: center; }
+
         .pos-btn {
             flex: 1;
             background: var(--btn-bg);
@@ -403,46 +339,22 @@
             color: var(--muted);
         }
         .pos-btn.secondary:hover { border-color: var(--accent); color: var(--accent); }
-        /* SCROLLBAR CUSTOM */
-        .slide::-webkit-scrollbar {
-            width: 6px;
-        }
-        .slide::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .slide::-webkit-scrollbar-thumb {
-            background: #3a4458;
-            border-radius: 3px;
-        }
 
-        /* RESPONSIVE ADJUSTMENTS */
+        .slide::-webkit-scrollbar       { width: 6px; }
+        .slide::-webkit-scrollbar-track { background: transparent; }
+        .slide::-webkit-scrollbar-thumb { background: #c9d0db; border-radius: 3px; }
+
         @media (max-width: 600px) {
-            .nav-btn {
-                padding: 0.7em 1.2em;
-                font-size: 0.9rem;
-            }
-            .progress-indicator {
-                font-size: 0.8rem;
-            }
-            table {
-                font-size: 0.75rem;
-            }
-            th, td {
-                padding: 0.5em 0.4em;
-            }
+            .nav-btn            { padding: 0.7em 1.2em; font-size: 0.9rem; }
+            .progress-indicator { font-size: 0.8rem; }
+            table               { font-size: 0.75rem; }
+            th, td              { padding: 0.5em 0.4em; }
         }
-
         @media (min-width: 1024px) {
-            .slide {
-                padding-left: 4rem;
-                padding-right: 4rem;
-            }
-            .nav-bar {
-                padding: 1rem 2rem;
-            }
+            .slide   { padding-left: 4rem; padding-right: 4rem; }
+            .nav-bar { padding: 1rem 2rem; }
         }
     </style>
-    <!-- Firebase SDK via CDN compat (não-module para acesso global confiável) -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
     <script>
@@ -459,27 +371,19 @@
         firebase.initializeApp(firebaseConfig);
         const _db = firebase.database();
         const _slideRef = _db.ref('slideshow/current');
-
         let _isSyncing = false;
-        let _syncReady = false;
 
-        // Escutar mudanças remotas
         _slideRef.on('value', (snapshot) => {
             const remoteIdx = snapshot.val();
             if (remoteIdx === null || remoteIdx === undefined) return;
             if (_isSyncing) return;
-            // Aguarda o slideshow estar pronto
             if (window._slideshowGoTo) {
                 window._slideshowGoTo(remoteIdx, false);
             } else {
-                // Tenta novamente em 500ms (caso o script ainda esteja carregando)
-                setTimeout(() => {
-                    if (window._slideshowGoTo) window._slideshowGoTo(remoteIdx, false);
-                }, 500);
+                setTimeout(() => { if (window._slideshowGoTo) window._slideshowGoTo(remoteIdx, false); }, 500);
             }
         });
 
-        // Publicar slide no Firebase
         window._publishSlide = (idx) => {
             _isSyncing = true;
             _slideRef.set(idx).then(() => {
@@ -489,24 +393,20 @@
     </script>
 </head>
 <body>
-    <div class="slideshow" id="slideshow">
-        <!-- SLIDES serão gerados dinamicamente via JS, mas colocaremos o HTML estático para garantir conteúdo completo sem truncamento -->
-    </div>
+    <div class="slideshow" id="slideshow"></div>
 
     <nav class="nav-bar" id="navbar">
         <button class="nav-btn" id="prevBtn" aria-label="Anterior">◀ Anterior</button>
-        <span class="progress-indicator" id="progressText">Slide 1 de 31</span>
-        <span id="syncDot" style="width:7px;height:7px;border-radius:50%;background:#4a5568;display:inline-block;margin-left:-0.3rem;transition:background 0.4s;" title="Sincronização"></span>
+        <span class="progress-indicator" id="progressText">Slide 1 de N</span>
+        <span id="syncDot" style="width:7px;height:7px;border-radius:50%;background:#d1d5db;display:inline-block;margin-left:-0.3rem;transition:background 0.4s;" title="Sincronização"></span>
         <button class="img-slide-btn" id="imgAddBtn" aria-label="Adicionar imagem" title="Adicionar imagem como slide">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
         </button>
         <button class="nav-btn" id="nextBtn" aria-label="Próximo">Próximo ▶</button>
     </nav>
 
-    <!-- Input arquivo oculto -->
     <input type="file" id="imgFileHidden" accept="image/*" style="display:none">
 
-    <!-- Modal antes/depois -->
     <div class="img-position-overlay" id="imgPosOverlay">
         <div class="img-position-modal">
             <p>Inserir imagem onde?</p>
@@ -522,151 +422,99 @@
 
     <script>
         (function() {
-            // CONTEÚDO DOS SLIDES COMO ARRAY DE STRINGS HTML
             const slidesData = [
                 // Slide 0 - Capa
-                `<div class="capa"><h1>👁️ Os Olhos da Sabedoria</h1><p class="subtitle">Estudo sobre Daniel 7 e o Chifre Pequeno</p></div>`,
+                `<div class="capa"><h1>👁️ Os Olhos da Sabedoria</h1><p class="subtitle">Um estudo sobre Daniel 7 e o Chifre Pequeno</p></div>`,
 
-                // Slide 1 - Parte 1 introdução
+                // Slide 1 - Parte 1: Introdução
                 `<h2>Parte 1 — A Sequência de Poderes em Daniel 7</h2><p>Uma visão rápida dos 4 animais de Daniel capítulo 7.</p>`,
 
                 // Slide 2 - Primeiro Animal
-                `<h2>🦁 Primeiro Animal</h2><p class="verse">Daniel 7:4</p><p>O leão com asas representa o reino da <strong>Babilônia</strong> que dominou o mundo do ano ~605 a.C. ao ano 539 a.C.</p><p>As asas representam a velocidade de conquista.</p>`,
+                `<h3>🦁 Primeiro Animal</h3><p class="verse">Daniel 7:4</p><p>O leão com asas representa o reino da Babilônia que dominou o mundo do ano ~605 a.C. ao ano 539 a.C.</p><p>As asas representam a velocidade de conquista.</p>`,
 
                 // Slide 3 - Segundo Animal
-                `<h2>🐻 Segundo Animal</h2><p class="verse">Daniel 7:5</p><p>O urso representa o reino dos <strong>Medo-Persas</strong> que governou o mundo do ano 539 a.C. ao ano 331 a.C.</p><p>O fato de o urso estar mais alto de um dos lados representa que um deles seria mais forte que o outro.</p><p>As três costelas na boca representam os três poderes que se opuseram ao seu domínio: o reino da Babilônia, Lídia e Egito.</p>`,
+                `<h3>🐻 Segundo Animal</h3><p class="verse">Daniel 7:5</p><p>O urso representa o reino dos Medo-Persas que governou o mundo do ano 539 a.C. ao ano 331 a.C.</p><p>O fato de o urso estar mais alto de um dos lados representa que um deles seria mais forte que o outro.</p><p>As três costelas na boca representam os três poderes que se opuseram ao seu domínio: o reino da Babilônia, Lídia e Egito.</p>`,
 
                 // Slide 4 - Terceiro Animal
-                `<h2>🐆 Terceiro Animal</h2><p class="verse">Daniel 7:6</p><p>Esse animal representa o reino da <strong>Grécia</strong> que dominou o mundo do ano 331 a.C. ao ano 168 a.C.</p><p>As quatro asas representam que esse poder conquistou o mundo com ultra velocidade.</p><p>As 4 cabeças representam a divisão da Grécia pelos quatro generais: <strong>Cassandro, Lisímaco, Seleuco e Ptolomeu</strong> — após a morte de Alexandre o Grande.</p>`,
+                `<h3>🐆 Terceiro Animal</h3><p class="verse">Daniel 7:6</p><p>Esse animal representa o reino da Grécia que dominou o mundo do ano 331 a.C. ao ano 168 a.C.</p><p>As quatro asas representam que esse poder conquistou o mundo com ultra velocidade.</p><p>As 4 cabeças representam a divisão da Grécia pelos quatro generais: Cassandro, Lisímaco, Seleuco e Ptolomeu — após a morte de Alexandre o Grande.</p>`,
 
-                // Slide 5 - Quarto Animal introdução
-                `<h2>🐉 Quarto Animal</h2><p class="verse">Daniel 7:7</p><p>O quarto animal representa o <strong>Reino de Roma</strong> que dominou o mundo do ano 168 a.C. ao ano 1798 d.C.</p><p>Agora vamos falar sobre as três fases do quarto animal:</p>`,
+                // Slide 5 - Quarto Animal (introdução)
+                `<h3>🐉 Quarto Animal</h3><p class="verse">Daniel 7:7</p><p>O quarto animal representa o Reino de Roma que dominou o mundo do ano 168 a.C. ao ano 1798 d.C.</p><p>Agora vamos falar sobre as três fases do quarto animal:</p>`,
 
-                // Slide 6 - Fase 1
-                `<h2>Fase 1 — O Dragão: Roma Imperial</h2><p class="verse">Daniel 7:7</p><p>Roma em sua fase imperial, poder absoluto sobre o Mediterrâneo.</p>`,
+                // Slide 6 - Fase 1: Roma Imperial
+                `<h3>Fase 1 — O Dragão: Roma Imperial</h3><p class="verse">Daniel 7:7</p>`,
 
-                // Slide 7 - Fase 2
-                `<h2>Fase 2 — Os Dez Chifres: Roma Dividida</h2><p class="verse">Daniel 7:7</p><p>Após a queda do Império Romano do Ocidente (476 d.C.), o território foi dividido entre os reinos bárbaros, representados pelos dez chifres.</p>`,
+                // Slide 7 - Fase 2: Roma Dividida
+                `<h3>Fase 2 — Os Dez Chifres: Roma Dividida</h3><p class="verse">Daniel 7:7</p>`,
 
-                // Slide 8 - Fase 3 introdução
-                `<h2>Fase 3 — O Chifre Pequeno: Roma Papal</h2><p class="verse">Daniel 7:8</p><p>Nós acreditamos que esse chifre pequeno representa a Roma Papal.</p><p>Roma Papal é a Igreja Católica Apostólica Romana com o poder civil em suas mãos.</p>`,
+                // Slide 8 - Fase 3: Roma Papal
+                `<h3>Fase 3 — O Chifre Pequeno: Roma Papal</h3><p class="verse">Daniel 7:8</p><p>Nós acreditamos que esse chifre pequeno representa a Roma Papal.</p><p>Roma Papal é a Igreja Católica Apostólica Romana com o poder civil em suas mãos.</p><p>Para entendermos isso precisamos analisar algumas coisas:</p><p>A primeira igreja dos apóstolos — a igreja verdadeira de Deus — era chamada de Igreja Católica Apostólica.</p><p>Mas chegou um momento que a Igreja Católica Apostólica se uniu ao poder corrompido de Roma e se tornou a Igreja Católica Apostólica Romana.</p><p>Após isso, a Igreja Católica Apostólica Romana passou a ter o poder civil em suas mãos no ano 538 d.C., após eliminar o terceiro chifre — os Ostrogodos.</p><p>E daí que surge a Roma Papal, que tem o poder do Estado em suas mãos.</p><p><strong>Por que acreditamos que o sistema papal é a Igreja Católica Apostólica Romana com o poder civil em suas mãos? Aqui estão os motivos:</strong></p><ul><li>Esse chifre surge do quarto animal</li><li>Esse chifre surge depois dos 10 chifres</li><li>Ao surgir, derruba três chifres</li><li>Esse chifre fala blasfêmias contra o Altíssimo</li><li>Esse chifre persegue os santos do Altíssimo</li><li>Esse chifre governa por um período de 1.260 anos</li></ul><p><strong>Linha do Tempo — O Chifre Pequeno:</strong></p><div class="table-wrapper"><table><thead><tr><th>Evento</th><th>Data</th></tr></thead><tbody><tr><td>Início do domínio dos 1.260 anos</td><td>538 d.C.</td></tr><tr><td>Fim dos 1.260 anos</td><td>1798 d.C.</td></tr></tbody></table></div>`,
 
-                // Slide 9 - Explicação da transição
-                `<h2>Da Igreja Primitiva ao Poder Civil</h2><p>A primeira igreja dos apóstolos — a igreja verdadeira de Deus — era chamada de <strong>Igreja Católica Apostólica</strong>.</p><p>Mas chegou um momento que a Igreja Católica Apostólica se uniu ao poder corrompido de Roma e se tornou a <strong>Igreja Católica Apostólica Romana</strong>.</p><p>Após isso, a Igreja Católica Apostólica Romana passou a ter o poder civil em suas mãos no ano <strong>538 d.C.</strong>, após eliminar o terceiro chifre — os Ostrogodos.</p><p>E daí que surge a Roma Papal, que tem o poder do Estado em suas mãos.</p>`,
+                // Slide 9 - Parte 2: Daniel 7:8
+                `<h2>Parte 2 — Daniel 7:8 — O Detalhe que Raramente é Estudado</h2><p>Agora vamos analisar uma característica menos estudada: os olhos do chifre pequeno.</p><p class="verse">Daniel 7:8</p>`,
 
-                // Slide 10 - Motivos para identificar o chifre como Roma Papal
-                `<h2>Por que acreditamos que o sistema papal é o Chifre Pequeno?</h2><ul><li>Esse chifre surge do quarto animal</li><li>Esse chifre surge depois dos 10 chifres</li><li>Ao surgir, derruba três chifres</li><li>Esse chifre fala blasfêmias contra o Altíssimo</li><li>Esse chifre persegue os santos do Altíssimo</li><li>Esse chifre governa por um período de 1.260 anos</li></ul>`,
+                // Slide 10 - Significado dos olhos
+                `<h3>O que significa olhos:</h3><ul><li>Efésios 1:15-18</li><li>Provérbios 3:19-21</li></ul>`,
 
-                // Slide 11 - Linha do tempo do Chifre Pequeno
-                `<h2>Linha do Tempo — O Chifre Pequeno</h2><div class="table-wrapper"><table><thead><tr><th>Evento</th><th>Data</th></tr></thead><tbody><tr><td>Início do domínio dos 1.260 anos</td><td>538 d.C.</td></tr><tr><td>Fim dos 1.260 anos</td><td>1798 d.C.</td></tr></tbody></table></div>`,
+                // Slide 11 - Olhos de Deus e olhos de homem
+                `<h3>Os olhos de Deus:</h3><ul><li>Provérbios 15:3</li><li>Apocalipse 5:6</li><li>Zacarias 4:10</li></ul><h3>Os olhos de homem:</h3><p>Então os olhos de homem representam a sabedoria humana e não a de Deus.</p><p>Esse poder possui uma sabedoria para enganar. Vemos isso nos seguintes versos:</p><ul><li>Daniel 8:23</li><li>Daniel 8:25</li></ul>`,
 
-                // Slide 12 - Parte 2 introdução
-                `<h2>Parte 2 — Daniel 7:8 — O Detalhe que Raramente é Estudado</h2><p>Agora vamos analisar uma característica menos estudada: <strong>os olhos do chifre pequeno</strong>.</p><p class="verse">Daniel 7:8</p>`,
+                // Slide 12 - Significado de 666
+                `<h3>O Significado de 666</h3><p class="verse">Apocalipse 13:18</p><p>A letra do alfabeto grego era representada por número.</p><p>Se pegarmos o número 666 e formos traduzir para o português, ele pode significar <strong>tradição</strong> — então 666 significa ensinamento de tradição de homem ao invés da Palavra de Deus.</p>`,
 
-                // Slide 13 - O que significa olhos
-                `<h2>O que significa "olhos"?</h2><p><strong>Efésios 1:15-18</strong> — Paulo ora para que os olhos do entendimento sejam iluminados.</p><p><strong>Provérbios 3:19-21</strong> — A sabedoria e o entendimento não devem partir dos teus olhos.</p><p>Conclusão: <em>Olhos simbolizam sabedoria, conhecimento e entendimento.</em></p>`,
+                // Slide 13 - O Vinho da Prostituta
+                `<h3>O Vinho da Prostituta</h3><ul><li>Apocalipse 17:4</li><li>Apocalipse 17:2</li></ul><p><strong>Análise:</strong></p><ul><li>Uma mulher prostituta</li><li>Ela está sentada no animal</li><li>Tem na mão o cálice de vinho cheio de abominações</li><li>Ela dá de beber esse vinho às nações e eles ficam embriagados</li></ul><blockquote>Babilônia tem fomentado doutrinas venenosas, o vinho do erro. Este vinho do erro é composto de doutrinas falsas, tais como a imortalidade natural da alma, o tormento eterno dos ímpios, a negação da pré-existência de Cristo antes de Seu nascimento em Belém, e a defesa e exaltação do primeiro dia da semana acima do dia santo e santificado de Deus. Esses e erros semelhantes são apresentados ao mundo pelas várias igrejas, e assim se cumprem as Escrituras que dizem: 'Porque todos os povos beberam do vinho da ira da sua prostituição.' É uma ira criada por doutrinas falsas, e quando reis e presidentes bebem deste vinho da ira de sua prostituição, são agitados de ira contra aqueles que não entrarão em harmonia com as heresias falsas e satânicas que exaltam o falso sábado e levam os homens a pisotearem o memorial de Deus.<footer>— Ellen G. White, <em>Manuscrito 61, 62</em></footer></blockquote>`,
 
-                // Slide 14 - Os olhos de Deus
-                `<h2>Os Olhos de Deus</h2><p><strong>Provérbios 15:3</strong> — Os olhos do Senhor estão em todo lugar.</p><p><strong>Apocalipse 5:6</strong> — O Cordeiro com sete olhos (o Espírito de Deus enviado a toda terra).</p><p><strong>Zacarias 4:10</strong> — Os olhos do Senhor percorrem toda a terra.</p><p>Os olhos de Deus representam <strong>onisciência</strong> e sabedoria divina.</p>`,
-
-                // Slide 15 - Os olhos de homem
-                `<h2>Os Olhos de Homem</h2><p>Então os olhos de homem representam a <strong>sabedoria humana</strong> e não a de Deus.</p><p>Esse poder possui uma sabedoria para enganar. Vemos isso nos seguintes versos:</p><p><strong>Daniel 8:23</strong> — Um rei de fisionomia feroz, especialista em intrigas.</p><p><strong>Daniel 8:25</strong> — Pela sua astúcia fará prosperar o engano; no seu coração se engrandecerá.</p>`,
-
-                // Slide 16 - O Significado de 666
-                `<h2>O Significado de 666</h2><p class="verse">Apocalipse 13:18</p><p>A letra do alfabeto grego era representada por número.</p><p>Se pegarmos o número 666 e formos traduzir para o português, ele pode significar <strong>tradição</strong> — então 666 significa ensinamento de tradição de homem ao invés da Palavra de Deus.</p>`,
-
-                // Slide 17 - O Vinho da Prostituta (introdução)
-                `<h2>O Vinho da Prostituta</h2><p><strong>Apocalipse 17:4</strong> — A mulher estava vestida de púrpura e escarlate, e adornada com ouro... tendo na mão um cálice de ouro cheio de abominações.</p><p><strong>Apocalipse 17:2</strong> — Com ela se prostituíram os reis da terra, e os habitantes da terra se embriagaram com o vinho da sua prostituição.</p><p><strong>Análise:</strong></p><ul><li>Uma mulher prostituta</li><li>Ela está sentada no animal</li><li>Tem na mão o cálice de vinho cheio de abominações</li><li>Ela dá de beber esse vinho às nações e eles ficam embriagados</li></ul>`,
-
-                // Slide 18 - Citação Ellen White sobre o vinho
-                `<blockquote>Babilônia tem fomentado doutrinas venenosas, o vinho do erro. Este vinho do erro é composto de doutrinas falsas, tais como a imortalidade natural da alma, o tormento eterno dos ímpios, a negação da pré-existência de Cristo antes de Seu nascimento em Belém, e a defesa e exaltação do primeiro dia da semana acima do dia santo e santificado de Deus. Esses e erros semelhantes são apresentados ao mundo pelas várias igrejas, e assim se cumprem as Escrituras que dizem: 'Porque todos os povos beberam do vinho da ira da sua prostituição.' É uma ira criada por doutrinas falsas, e quando reis e presidentes bebem deste vinho da ira de sua prostituição, são agitados de ira contra aqueles que não entrarão em harmonia com as heresias falsas e satânicas que exaltam o falso sábado e levam os homens a pisotearem o memorial de Deus.<footer>— Ellen G. White, Manuscrito 61, 62</footer></blockquote>`,
-
-                // Slide 19 - Parte 3 introdução
+                // Slide 14 - Parte 3: Introdução
                 `<h2>Parte 3 — Se a Igreja Católica Crê no Mesmo Deus que Nós...</h2><p>Se a Igreja Católica crê no mesmo Deus que nós, tem a mesma Bíblia que nós e crê que é a igreja imaculada, santa e verdadeira de Deus — por que ela institui a tradição como algo vindo de si e acima da Bíblia?</p><p>Isso é o que vamos buscar responder durante os estudos.</p><p>Agora vamos ver como isso se inicia — e tudo começa com os judeus.</p>`,
 
-                // Slide 20 - Os Três Elementos da Tradição Judaica
-                `<h2>Os Três Elementos da Tradição Judaica</h2><p>A visão judaica da tradição nos dias de Cristo era composta de três elementos interconectados:</p><p><strong>1. Um Depósito de Tradição</strong> — Composto tanto dos escritos de Moisés quanto das tradições orais não escritas que Moisés teria transmitido.</p><p><strong>2. Um Mecanismo de Transmissão</strong> — Um processo confiável para passar de geração em geração, de forma fidedigna, tanto os escritos quanto as tradições orais.</p><p><strong>3. Um Ofício de Ensino Vivo</strong> — Em cada geração, uma autoridade de ensino viva — capaz de explicar, aplicar, ampliar e extrair do Depósito de Tradição as verdades contidas nos escritos de Moisés e nas tradições orais — com autoridade considerada infalível.</p>`,
+                // Slide 15 - Os Três Elementos da Tradição Judaica
+                `<h3>Os Três Elementos da Tradição Judaica</h3><p>A visão judaica da tradição nos dias de Cristo era composta de <strong>três elementos interconectados</strong>:</p><p><strong>1. Um Depósito de Tradição</strong><br>Composto tanto dos escritos de Moisés quanto das tradições orais não escritas que Moisés teria transmitido.</p><p><strong>2. Um Mecanismo de Transmissão</strong><br>Um processo confiável para passar de geração em geração, de forma fidedigna, tanto os escritos quanto as tradições orais.</p><p><strong>3. Um Ofício de Ensino Vivo</strong><br>Em cada geração, uma autoridade de ensino viva — capaz de explicar, aplicar, ampliar e extrair do Depósito de Tradição as verdades contidas nos escritos de Moisés e nas tradições orais — com autoridade considerada infalível.</p>`,
 
-                // Slide 21 - Deslocamento da autoridade
-                `<h2>Como a autoridade foi se deslocando com o tempo</h2><ul><li>Os escritos de Moisés e a tradição oral estavam no mesmo nível de autoridade</li><li>Depois, a tradição oral estava acima dos escritos de Moisés</li><li>Depois, as interpretações dos escribas sobre os escritos de Moisés e a tradição oral estavam acima dos mesmos — e foi nesse estágio que Jesus apareceu</li></ul>`,
+                // Slide 16 - Deslocamento da autoridade
+                `<h3>Como a autoridade foi se deslocando com o tempo:</h3><ul><li>Os escritos de Moisés e a tradição oral estavam no mesmo nível de autoridade</li><li>Depois, a tradição oral estava acima dos escritos de Moisés</li><li>Depois, as interpretações dos escribas sobre os escritos de Moisés e a tradição oral estavam acima dos mesmos — e foi nesse estágio que Jesus apareceu</li></ul><p><strong>Segundo os judeus, o depósito funcionava assim:</strong></p><blockquote>Moisés recebeu a Lei do Sinai e a confiou a Josué, e Josué aos anciãos, e os anciãos aos profetas; e os profetas a confiaram aos homens da Grande Sinagoga [após o Cativeiro].</blockquote>`,
 
-                // Slide 22 - Citação sobre transmissão
-                `<h2>O Depósito de Tradição</h2><p>Segundo os judeus, o depósito funcionava assim:</p><blockquote>Moisés recebeu a Lei do Sinai e a confiou a Josué, e Josué aos anciãos, e os anciãos aos profetas; e os profetas a confiaram aos homens da Grande Sinagoga [após o Cativeiro].</blockquote>`,
+                // Slide 17 - O Ofício de Ensino Vivo
+                `<h3>O Ofício de Ensino Vivo</h3><p>Além do Depósito e do mecanismo de transmissão, os fariseus acreditavam que <strong>uma voz viva</strong> era necessária em cada geração — um ofício de ensino (a palavra <em>"rabi"</em> significa <em>"mestre"</em>) capaz de:</p><ol><li>Identificar o que era uma tradição genuína</li><li>Interpretá-la e explicá-la com autoridade</li><li>Aplicá-la à vida contemporânea</li></ol><p>Não era suficiente ter o Depósito de tradições escritas e orais, nem mesmo tê-lo transmitido fielmente.</p><p>Era também necessário <strong>um intérprete vivo em cada geração</strong> capaz de definir o que era tradição genuína — e sua palavra era considerada final.</p>`,
 
-                // Slide 23 - Ofício de Ensino Vivo
-                `<h2>O Ofício de Ensino Vivo</h2><p>Além do Depósito e do mecanismo de transmissão, os fariseus acreditavam que uma voz viva era necessária em cada geração — um ofício de ensino (a palavra "rabi" significa "mestre") capaz de:</p><ol><li>Identificar o que era uma tradição genuína</li><li>Interpretá-la e explicá-la com autoridade</li><li>Aplicá-la à vida contemporânea</li></ol><p>Não era suficiente ter o Depósito de tradições escritas e orais, nem mesmo tê-lo transmitido fielmente. Era também necessário um intérprete vivo em cada geração capaz de definir o que era tradição genuína — e sua palavra era considerada final.</p>`,
+                // Slide 18 - A Voz dos Rabinos Como Voz de Deus
+                `<h3>A Voz dos Rabinos Como Voz de Deus</h3><p>O Dr. Geike, em sua obra <em>A Vida e as Palavras de Jesus</em>, relata:</p><blockquote>De seus alunos os rabinos exigiam a reverência mais profunda. 'A honra', diz o Talmude, 'devida a um mestre beira a que é devida a Deus... O discurso de um rabino devia ser reverenciado tanto quanto a lei. Disputar com ele, ou murmurar contra ele, era um crime tão grave quanto fazer o mesmo com o Todo-Poderoso. Suas PALAVRAS deviam ser recebidas como PALAVRAS DO DEUS VIVO.'<footer>— Citado em E. J. Hibbard, <em>As Duas Leis</em>, p. 46</footer></blockquote><blockquote>Era um princípio universalmente aceito que 'os ditos dos escribas eram mais pesados do que os da lei'... Uma vez pronunciadas, as palavras de um rabino permaneciam como LEI PARA SEMPRE [imutáveis e infalíveis]...<footer>— Citado em E. J. Hibbard, <em>As Duas Leis</em>, p. 46</footer></blockquote><p>Somente os especialistas da época podiam ensinar. Somente eles podiam ter acesso aos escritos de Moisés, às leis orais e ao que os estudiosos interpretavam.</p><p>O povo só devia ouvir e seguir — como se o próprio Deus tivesse falado. Por isso Jesus diz:</p><ul><li>Mateus 23:3</li><li>Mateus 23:13</li><li>Lucas 11:52</li></ul>`,
 
-                // Slide 24 - A Voz dos Rabinos Como Voz de Deus
-                `<h2>A Voz dos Rabinos Como Voz de Deus</h2><p>O Dr. Geike, em sua obra <em>A Vida e as Palavras de Jesus</em>, relata:</p><blockquote>De seus alunos os rabinos exigiam a reverência mais profunda. 'A honra', diz o Talmude, 'devida a um mestre beira a que é devida a Deus... O discurso de um rabino devia ser reverenciado tanto quanto a lei. Disputar com ele, ou murmurar contra ele, era um crime tão grave quanto fazer o mesmo com o Todo-Poderoso. Suas PALAVRAS deviam ser recebidas como PALAVRAS DO DEUS VIVO.'<footer>— Citado em E. J. Hibbard, As Duas Leis, p. 46</footer></blockquote><blockquote>Era um princípio universalmente aceito que 'os ditos dos escribas eram mais pesados do que os da lei'... Uma vez pronunciadas, as palavras de um rabino permaneciam como LEI PARA SEMPRE [imutáveis e infalíveis]...<footer>— Citado em E. J. Hibbard, As Duas Leis, p. 46</footer></blockquote>`,
+                // Slide 19 - Ellen G. White confirma
+                `<h3>Ellen G. White confirma:</h3><blockquote>Eles haviam respeitado os sacerdotes e rabinos por sua inteligência e aparente piedade. Em todos os assuntos religiosos sempre tinham cedido obediência implícita à sua autoridade... Através de sua reverência pela tradição e de sua fé cega em um sacerdócio corrupto, o povo estava escravizado.<footer>— Ellen G. White, <em>O Desejado de Todas as Nações</em>, pp. 611-612</footer></blockquote>`,
 
-                // Slide 25 - Jesus e os líderes
-                `<h2>O Povo e o Acesso à Palavra</h2><p>Somente os especialistas da época podiam ensinar. Somente eles podiam ter acesso aos escritos de Moisés, às leis orais e ao que os estudiosos interpretavam. O povo só devia ouvir e seguir — como se o próprio Deus tivesse falado. Por isso Jesus diz:</p><p><strong>Mateus 23:3</strong> — "Fazei e guardai, pois, tudo quanto vos disserem, mas não os imiteis em suas obras..."</p><p><strong>Mateus 23:13</strong> — "Fechais o reino dos céus diante dos homens."</p><p><strong>Lucas 11:52</strong> — "Tirastes a chave do conhecimento."</p>`,
-
-                // Slide 26 - Citação Ellen White sobre tradição
-                `<blockquote>Eles haviam respeitado os sacerdotes e rabinos por sua inteligência e aparente piedade. Em todos os assuntos religiosos sempre tinham cedido obediência implícita à sua autoridade... Através de sua reverência pela tradição e de sua fé cega em um sacerdócio corrupto, o povo estava escravizado.<footer>— Ellen G. White, O Desejado de Todas as Nações, pp. 611-612</footer></blockquote>`,
-
-                // Slide 27 - Linha do Tempo Profética Completa
+                // Slide 20 - Linha do Tempo Profética Completa
                 `<h2>📅 Linha do Tempo Profética Completa</h2><div class="table-wrapper"><table><thead><tr><th>Evento</th><th>Data</th></tr></thead><tbody><tr><td>Babilônia dominante — Nabucodonosor</td><td>~605 a.C.</td></tr><tr><td>Medo-Pérsia conquista Babilônia</td><td>539 a.C.</td></tr><tr><td>Grécia conquista Medo-Pérsia — Alexandre</td><td>331 a.C.</td></tr><tr><td>Divisão em 4 reinos após morte de Alexandre</td><td>323 a.C.</td></tr><tr><td>Roma conquista a Grécia</td><td>168 a.C.</td></tr><tr><td>Roma dividida em 10 reinos — invasões bárbaras</td><td>~476 d.C.</td></tr><tr><td>Início do domínio do Chifre Pequeno (Papado)</td><td>538 d.C.</td></tr><tr><td>Fim dos 1.260 anos — captura do papa por Napoleão</td><td>1798 d.C.</td></tr></tbody></table></div>`,
 
-                // Slide 28 - Paralelo Daniel 2 × Daniel 7 × Daniel 8
+                // Slide 21 - Paralelo Daniel 2 × Daniel 7 × Daniel 8
                 `<h2>📊 Paralelo: Daniel 2 × Daniel 7 × Daniel 8</h2><div class="table-wrapper"><table><thead><tr><th>Daniel 2 (Estátua)</th><th>Daniel 7 (Bestas)</th><th>Daniel 8 (Animais)</th><th>Reino</th></tr></thead><tbody><tr><td>Cabeça de ouro</td><td>Leão com asas</td><td>—</td><td>Babilônia</td></tr><tr><td>Peito de prata</td><td>Urso inclinado</td><td>Carneiro</td><td>Medo-Pérsia</td></tr><tr><td>Ventre de bronze</td><td>Leopardo com 4 cabeças</td><td>Bode com chifre</td><td>Grécia</td></tr><tr><td>Pernas de ferro</td><td>Besta indescritível</td><td>—</td><td>Roma Imperial</td></tr><tr><td>Pés de ferro e barro</td><td>10 chifres</td><td>—</td><td>Roma Dividida</td></tr><tr><td>Pedra sem mãos</td><td>Chifre Pequeno</td><td>Chifre Pequeno</td><td>Papado</td></tr></tbody></table></div>`,
 
-                // Slide 29 - Versículos-Chave
-                `<h2>🔑 Versículos-Chave deste Estudo</h2><ul><li><strong>Daniel 7:8</strong> — O chifre com olhos de homem</li><li><strong>Daniel 7:25</strong> — O chifre muda os tempos e a lei</li><li><strong>Daniel 8:23-25</strong> — O rei astuto e mestre da intriga</li><li><strong>Apocalipse 5:6</strong> — O Cordeiro com sete olhos</li><li><strong>Zacarias 4:10 (NVI)</strong> — Os olhos do Senhor percorrem a terra</li><li><strong>Provérbios 15:3</strong> — Os olhos do Senhor em todo lugar</li><li><strong>Ezequiel 10:12</strong> — Seres cobertos de olhos</li><li><strong>Hebreus 4:12-13</strong> — A Palavra discerne tudo</li><li><strong>Efésios 1:17-18</strong> — Os olhos do entendimento</li><li><strong>Provérbios 3:19-21</strong> — Sabedoria e entendimento não devem partir dos seus olhos</li><li><strong>Atos 26:17-18</strong> — Abrir os olhos das trevas para a luz</li><li><strong>Ezequiel 28:2-5, 12, 17</strong> — Lúcifer corrompeu sua sabedoria</li><li><strong>Apocalipse 13:18</strong> — O número de um homem: 666</li><li><strong>2 Tessalonicenses 2:3-4, 7</strong> — O homem do pecado</li><li><strong>Apocalipse 17:2, 4</strong> — A prostituta e o cálice das abominações</li><li><strong>Jeremias 51:7</strong> — O vinho que enlouquece as nações</li><li><strong>Mateus 23:13</strong> — Fecham o reino dos céus</li><li><strong>Lucas 11:52</strong> — Tiraram a chave do conhecimento</li><li><strong>Mateus 7:28-29 (NVI)</strong> — Jesus ensinava com autoridade</li></ul>`,
+                // Slide 22 - Versículos-Chave
+                `<h2>🔑 Versículos-Chave deste Estudo</h2><ul><li><strong>Daniel 7:8</strong> — O chifre com olhos de homem</li><li><strong>Daniel 7:25</strong> — O chifre muda os tempos e a lei</li><li><strong>Daniel 8:23-25</strong> — O rei astuto e mestre da intriga</li><li><strong>Apocalipse 5:6</strong> — O Cordeiro com sete olhos</li><li><strong>Zacarias 4:10</strong> <em>(NVI)</em> — Os olhos do Senhor percorrem a terra</li><li><strong>Provérbios 15:3</strong> — Os olhos do Senhor em todo lugar</li><li><strong>Ezequiel 10:12</strong> — Seres cobertos de olhos</li><li><strong>Hebreus 4:12-13</strong> — A Palavra discerne tudo</li><li><strong>Efésios 1:17-18</strong> — Os olhos do entendimento</li><li><strong>Provérbios 3:19-21</strong> — Sabedoria e entendimento não devem partir dos seus olhos</li><li><strong>Atos 26:17-18</strong> — Abrir os olhos das trevas para a luz</li><li><strong>Ezequiel 28:2-5, 12, 17</strong> — Lúcifer corrompeu sua sabedoria</li><li><strong>Apocalipse 13:18</strong> — O número de um homem: 666</li><li><strong>2 Tessalonicenses 2:3-4, 7</strong> — O homem do pecado</li><li><strong>Apocalipse 17:2, 4</strong> — A prostituta e o cálice das abominações</li><li><strong>Jeremias 51:7</strong> — O vinho que enlouquece as nações</li><li><strong>Mateus 23:13</strong> — Fecham o reino dos céus</li><li><strong>Lucas 11:52</strong> — Tiraram a chave do conhecimento</li><li><strong>Mateus 7:28-29</strong> <em>(NVI)</em> — Jesus ensinava com autoridade</li></ul>`,
 
-                // Slide 30 - Glossário
-                `<h2>📌 Glossário de Símbolos</h2><dl class="glossary"><dt>Olhos</dt><dd>Sabedoria, conhecimento e entendimento. Divinos = onisciência. Humanos = entendimento finito.</dd><dt>Olhos de homem no chifre pequeno</dt><dd>O sistema opera com sabedoria humana, não divina, apesar de reivindicar autoridade de Deus.</dd><dt>Leão com asas de águia</dt><dd>Babilônia.</dd><dt>Urso inclinado de um lado</dt><dd>Medo-Pérsia (persas dominantes).</dd><dt>Leopardo com quatro cabeças</dt><dd>Grécia (dividida nos quatro reinos de Alexandre).</dd><dt>Besta indescritível / Dragão</dt><dd>Roma Imperial.</dd><dt>Dez chifres</dt><dd>Roma dividida nas nações bárbaras da Europa.</dd><dt>Chifre pequeno</dt><dd>O Papado Romano.</dd><dt>666</dt><dd>"Número de um homem" = sistema baseado em tradição e sabedoria humanas. Em grego, Paradosis (tradição) = 666.</dd><dt>Vinho fermentado da prostituta</dt><dd>Doutrinas falsas baseadas em tradições humanas.</dd><dt>Chave do conhecimento</dt><dd>Acesso direto às Escrituras — retirado pelos líderes religiosos que se colocavam como intérpretes exclusivos.</dd><dt>Ex-cathedra</dt><dd>"Da cadeira" — falar com autoridade final e infalível. Os rabinos falavam da cadeira de Moisés; o papa fala da cadeira de Pedro.</dd></dl></div>`
+                // Slide 23 - Glossário de Símbolos
+                `<h2>📌 Glossário de Símbolos</h2><dl class="glossary"><dt>Olhos</dt><dd>Sabedoria, conhecimento e entendimento. Divinos = onisciência. Humanos = entendimento finito.</dd><dt>Olhos de homem no chifre pequeno</dt><dd>O sistema opera com sabedoria humana, não divina, apesar de reivindicar autoridade de Deus.</dd><dt>Leão com asas de águia</dt><dd>Babilônia.</dd><dt>Urso inclinado de um lado</dt><dd>Medo-Pérsia (persas dominantes).</dd><dt>Leopardo com quatro cabeças</dt><dd>Grécia (dividida nos quatro reinos de Alexandre).</dd><dt>Besta indescritível / Dragão</dt><dd>Roma Imperial.</dd><dt>Dez chifres</dt><dd>Roma dividida nas nações bárbaras da Europa.</dd><dt>Chifre pequeno</dt><dd>O Papado Romano.</dd><dt>666</dt><dd>"Número de um homem" = sistema baseado em tradição e sabedoria humanas. Em grego, <em>Paradosis</em> (tradição) = 666.</dd><dt>Vinho fermentado da prostituta</dt><dd>Doutrinas falsas baseadas em tradições humanas.</dd><dt>Chave do conhecimento</dt><dd>Acesso direto às Escrituras — retirado pelos líderes religiosos que se colocavam como intérpretes exclusivos.</dd><dt>Ex-cathedra</dt><dd>"Da cadeira" — falar com autoridade final e infalível. Os rabinos falavam da cadeira de Moisés; o papa fala da cadeira de Pedro.</dd></dl>`
             ];
 
-            const slideshow = document.getElementById('slideshow');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
+            const slideshow    = document.getElementById('slideshow');
+            const prevBtn      = document.getElementById('prevBtn');
+            const nextBtn      = document.getElementById('nextBtn');
             const progressText = document.getElementById('progressText');
-            let currentSlide = 0;
-            const totalSlides = slidesData.length;
+            let currentSlide   = 0;
 
-            // Criar slides no DOM
             slidesData.forEach((htmlContent, index) => {
                 const slideDiv = document.createElement('div');
                 slideDiv.className = 'slide';
                 slideDiv.innerHTML = `<div class="slide-content">${htmlContent}</div>`;
-                if (index === 0) slideDiv.classList.add('active');
                 slideshow.appendChild(slideDiv);
             });
 
-            const slideElements = document.querySelectorAll('.slide');
-
-            function updateSlide(newIndex) {
-                if (newIndex < 0 || newIndex >= totalSlides) return;
-                // Remove classes atuais
-                slideElements.forEach(s => s.classList.remove('active', 'prev'));
-                // Define nova
-                slideElements[newIndex].classList.add('active');
-                if (currentSlide < newIndex) {
-                    // vindo da esquerda
-                } else if (currentSlide > newIndex) {
-                    slideElements[newIndex].style.transform = 'translateX(-30px)';
-                    setTimeout(() => { slideElements[newIndex].style.transform = ''; }, 20);
-                }
-                currentSlide = newIndex;
-                // Scroll top do slide
-                slideElements[currentSlide].scrollTop = 0;
-                // Atualizar progresso
-                progressText.textContent = `Slide ${currentSlide + 1} de ${totalSlides}`;
-                // Atualizar estado dos botões
-                prevBtn.disabled = (currentSlide === 0);
-                nextBtn.disabled = (currentSlide === totalSlides - 1);
-            }
-
-            // Navegação unificada — sempre lê o DOM ao vivo para suportar slides dinâmicos
-            function getTotal() { return slideshow.querySelectorAll('.slide').length; }
-
             function goTo(newIndex, publish) {
                 if (publish === undefined) publish = true;
-                const total = getTotal();
+                const allSlides = Array.from(slideshow.querySelectorAll('.slide'));
+                const total = allSlides.length;
                 if (newIndex < 0 || newIndex >= total) return;
-                const allSlides = slideshow.querySelectorAll('.slide');
-                allSlides.forEach(s => { s.classList.remove('active', 'prev'); s.style.transform = ''; });
+                allSlides.forEach(s => s.classList.remove('active', 'prev'));
                 if (newIndex < currentSlide) {
                     allSlides[newIndex].style.transform = 'translateX(-30px)';
                     setTimeout(() => { allSlides[newIndex].style.transform = ''; }, 20);
@@ -677,139 +525,131 @@
                 progressText.textContent = 'Slide ' + (currentSlide + 1) + ' de ' + total;
                 prevBtn.disabled = (currentSlide === 0);
                 nextBtn.disabled = (currentSlide === total - 1);
-                // Publicar no Firebase se for navegação local
                 if (publish && window._publishSlide) {
                     window._publishSlide(currentSlide);
-                // Piscar dot de sync
-                const dot = document.getElementById('syncDot');
-                if (dot) {
-                    dot.style.background = '#4caf50';
-                    setTimeout(() => { dot.style.background = '#4a5568'; }, 600);
-                }
+                    const dot = document.getElementById('syncDot');
+                    if (dot) {
+                        dot.style.background = '#4caf50';
+                        setTimeout(() => { dot.style.background = '#d1d5db'; }, 600);
+                    }
                 }
             }
 
-            // Expor goTo globalmente para o módulo Firebase
             window._slideshowGoTo = goTo;
 
             prevBtn.addEventListener('click', () => { if (currentSlide > 0) goTo(currentSlide - 1); });
-            nextBtn.addEventListener('click', () => { if (currentSlide < getTotal() - 1) goTo(currentSlide + 1); });
+            nextBtn.addEventListener('click', () => { const all = slideshow.querySelectorAll('.slide'); if (currentSlide < all.length - 1) goTo(currentSlide + 1); });
 
-            // Keyboard
             document.addEventListener('keydown', (e) => {
                 if (document.getElementById('imgPosOverlay').classList.contains('open')) return;
-                if (e.key === 'ArrowRight') { e.preventDefault(); if (currentSlide < getTotal() - 1) goTo(currentSlide + 1); }
+                const all = slideshow.querySelectorAll('.slide');
+                if (e.key === 'ArrowRight') { e.preventDefault(); if (currentSlide < all.length - 1) goTo(currentSlide + 1); }
                 else if (e.key === 'ArrowLeft') { e.preventDefault(); if (currentSlide > 0) goTo(currentSlide - 1); }
             });
 
-            // Touch swipe
             let touchStartX = 0;
-            let touchEndX = 0;
             slideshow.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
-            slideshow.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                const diff = touchStartX - touchEndX;
+            slideshow.addEventListener('touchend',   (e) => {
+                const diff = touchStartX - e.changedTouches[0].screenX;
                 if (Math.abs(diff) > 50) {
-                    if (diff > 0 && currentSlide < getTotal() - 1) goTo(currentSlide + 1);
+                    const all = slideshow.querySelectorAll('.slide');
+                    if (diff > 0 && currentSlide < all.length - 1) goTo(currentSlide + 1);
                     if (diff < 0 && currentSlide > 0) goTo(currentSlide - 1);
                 }
             });
 
-            // Inicial
             goTo(0);
 
-            /* =====================
-               SLIDES DE IMAGEM
-            ===================== */
-            // slideshow e slidesData são do escopo pai
-            // Precisamos trabalhar com arrays e DOM dinamicamente
+            let pendingImageData = null;
 
-            let pendingImageData = null; // { dataUrl, name }
+            const imgAddBtn     = document.getElementById('imgAddBtn');
+            const imgFileHidden = document.getElementById('imgFileHidden');
+            const imgPosOverlay = document.getElementById('imgPosOverlay');
+            const posBefore     = document.getElementById('posBefore');
+            const posAfter      = document.getElementById('posAfter');
+            const posCancel     = document.getElementById('posCancel');
 
-            const imgAddBtn       = document.getElementById('imgAddBtn');
-            const imgFileHidden   = document.getElementById('imgFileHidden');
-            const imgPosOverlay   = document.getElementById('imgPosOverlay');
-            const posBefore       = document.getElementById('posBefore');
-            const posAfter        = document.getElementById('posAfter');
-            const posCancel       = document.getElementById('posCancel');
+            imgAddBtn.addEventListener('click', () => { imgFileHidden.value = ''; imgFileHidden.click(); });
 
-            // Ao clicar no botão: abre seletor de arquivo
-            imgAddBtn.addEventListener('click', () => {
-                imgFileHidden.value = '';
-                imgFileHidden.click();
-            });
-
-            // Após selecionar arquivo: guardar e abrir modal
             imgFileHidden.addEventListener('change', () => {
                 const file = imgFileHidden.files[0];
                 if (!file || !file.type.startsWith('image/')) return;
                 const reader = new FileReader();
-                reader.onload = (ev) => {
-                    pendingImageData = { dataUrl: ev.target.result, name: file.name };
-                    imgPosOverlay.classList.add('open');
-                };
+                reader.onload = (ev) => { pendingImageData = { dataUrl: ev.target.result, name: file.name }; imgPosOverlay.classList.add('open'); };
                 reader.readAsDataURL(file);
             });
 
-            posCancel.addEventListener('click', () => {
-                pendingImageData = null;
-                imgPosOverlay.classList.remove('open');
-            });
-
-            imgPosOverlay.addEventListener('click', (e) => {
-                if (e.target === imgPosOverlay) {
-                    pendingImageData = null;
-                    imgPosOverlay.classList.remove('open');
-                }
-            });
+            posCancel.addEventListener('click', () => { pendingImageData = null; imgPosOverlay.classList.remove('open'); });
+            imgPosOverlay.addEventListener('click', (e) => { if (e.target === imgPosOverlay) { pendingImageData = null; imgPosOverlay.classList.remove('open'); } });
 
             function insertImageSlide(position) {
-                // position: 'before' | 'after'
                 imgPosOverlay.classList.remove('open');
                 if (!pendingImageData) return;
-
                 const insertAt = position === 'before' ? currentSlide : currentSlide + 1;
-
-                // Criar elemento do slide
                 const slideDiv = document.createElement('div');
                 slideDiv.className = 'slide';
                 slideDiv.dataset.imgSlide = '1';
-
                 const inner = document.createElement('div');
                 inner.className = 'slide-image-full';
-
                 const img = document.createElement('img');
                 img.src = pendingImageData.dataUrl;
                 img.alt = pendingImageData.name;
 
-                // Remoção: 5 cliques rápidos na imagem
-                let clickCount = 0;
-                let clickTimer = null;
-                img.addEventListener('click', () => {
-                    clickCount++;
-                    clearTimeout(clickTimer);
-                    if (clickCount >= 5) {
-                        clickCount = 0;
+                const removeBtn = document.createElement('button');
+                removeBtn.className = 'slide-img-remove';
+                removeBtn.innerHTML = '✕';
+                removeBtn.title = 'Remover imagem';
+                let removeConfirming = false;
+                let removeTimer = null;
+                removeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (!removeConfirming) {
+                        removeConfirming = true;
+                        removeBtn.innerHTML = 'Excluir?';
+                        removeBtn.style.background = 'rgba(180,30,30,0.85)';
+                        removeTimer = setTimeout(() => {
+                            removeConfirming = false;
+                            removeBtn.innerHTML = '✕';
+                            removeBtn.style.background = '';
+                        }, 2500);
+                    } else {
+                        clearTimeout(removeTimer);
                         removeImageSlide(slideDiv);
-                        return;
                     }
-                    clickTimer = setTimeout(() => { clickCount = 0; }, 800);
+                });
+
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'slide-img-copy';
+                copyBtn.innerHTML = '&#128203; Copiar';
+                copyBtn.addEventListener('click', async (e) => {
+                    e.stopPropagation();
+                    try {
+                        const response = await fetch(img.src);
+                        const blob = await response.blob();
+                        await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
+                        copyBtn.innerHTML = '&#10003; Copiado!';
+                        copyBtn.classList.add('copied');
+                        setTimeout(() => { copyBtn.innerHTML = '&#128203; Copiar'; copyBtn.classList.remove('copied'); }, 2000);
+                    } catch (err) {
+                        const a = document.createElement('a');
+                        a.href = img.src;
+                        a.download = img.alt || 'imagem.jpg';
+                        a.click();
+                    }
                 });
 
                 inner.appendChild(img);
+                inner.appendChild(removeBtn);
+                inner.appendChild(copyBtn);
                 slideDiv.appendChild(inner);
 
-                // Inserir no DOM na posição correta
                 const allSlides = Array.from(slideshow.querySelectorAll('.slide'));
                 if (insertAt >= allSlides.length) {
                     slideshow.appendChild(slideDiv);
                 } else {
                     slideshow.insertBefore(slideDiv, allSlides[insertAt]);
                 }
-
                 pendingImageData = null;
-
-                // Navegar para o novo slide
                 goTo(insertAt);
             }
 
@@ -818,24 +658,10 @@
                 const idx = allSlides.indexOf(slideEl);
                 const wasActive = slideEl.classList.contains('active');
                 slideEl.remove();
-
                 const remaining = slideshow.querySelectorAll('.slide').length;
                 let nextIdx = wasActive ? Math.max(0, idx - 1) : currentSlide;
                 if (nextIdx >= remaining) nextIdx = remaining - 1;
                 goTo(nextIdx);
-            }
-
-            function goTo(newIndex) {
-                const allSlides = Array.from(slideshow.querySelectorAll('.slide'));
-                const total = allSlides.length;
-                if (newIndex < 0 || newIndex >= total) return;
-                allSlides.forEach(s => s.classList.remove('active', 'prev'));
-                allSlides[newIndex].classList.add('active');
-                allSlides[newIndex].scrollTop = 0;
-                currentSlide = newIndex;
-                progressText.textContent = 'Slide ' + (currentSlide + 1) + ' de ' + total;
-                prevBtn.disabled = (currentSlide === 0);
-                nextBtn.disabled = (currentSlide === total - 1);
             }
 
             posBefore.addEventListener('click', () => insertImageSlide('before'));
