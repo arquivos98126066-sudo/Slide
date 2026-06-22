@@ -442,11 +442,10 @@
             }
         }
     </style>
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-        import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-
+    <!-- Firebase SDK via CDN compat (não-module para acesso global confiável) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script>
         const firebaseConfig = {
             apiKey: "AIzaSyDPJvM-XZWfa8HQ7h8v0Usb1Hf3q8sDqpg",
             authDomain: "meus-apps-8ca76.firebaseapp.com",
@@ -457,32 +456,36 @@
             appId: "1:768854372271:web:467b541baf3c513f03095a"
         };
 
-        const app = initializeApp(firebaseConfig);
-        const db  = getDatabase(app);
-        const slideRef = ref(db, 'slideshow/current');
+        firebase.initializeApp(firebaseConfig);
+        const _db = firebase.database();
+        const _slideRef = _db.ref('slideshow/current');
 
-        let isSyncing = false; // evita loop de escrita/leitura
+        let _isSyncing = false;
+        let _syncReady = false;
 
-        // Escutar mudanças do Firebase -> atualizar slide local
-        onValue(slideRef, (snapshot) => {
+        // Escutar mudanças remotas
+        _slideRef.on('value', (snapshot) => {
             const remoteIdx = snapshot.val();
             if (remoteIdx === null || remoteIdx === undefined) return;
-            if (isSyncing) return;
-            // Chamar goTo do escopo global (exposto abaixo)
-            if (window._slideshowGoTo && typeof remoteIdx === 'number') {
-                window._slideshowGoTo(remoteIdx, false); // false = não re-publicar
+            if (_isSyncing) return;
+            // Aguarda o slideshow estar pronto
+            if (window._slideshowGoTo) {
+                window._slideshowGoTo(remoteIdx, false);
+            } else {
+                // Tenta novamente em 500ms (caso o script ainda esteja carregando)
+                setTimeout(() => {
+                    if (window._slideshowGoTo) window._slideshowGoTo(remoteIdx, false);
+                }, 500);
             }
         });
 
-        // Publicar mudança no Firebase
+        // Publicar slide no Firebase
         window._publishSlide = (idx) => {
-            isSyncing = true;
-            set(slideRef, idx).finally(() => {
-                setTimeout(() => { isSyncing = false; }, 300);
-            });
+            _isSyncing = true;
+            _slideRef.set(idx).then(() => {
+                setTimeout(() => { _isSyncing = false; }, 400);
+            }).catch(() => { _isSyncing = false; });
         };
-
-        window._firebaseReady = true;
     </script>
 </head>
 <body>
