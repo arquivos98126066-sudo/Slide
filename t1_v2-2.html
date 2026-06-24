@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Os Olhos da Sabedoria</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #ffffff;
             --surface: #f2f4f7;
             --text: #1a1a1a;
-            --heading: #7a5a10;
-            --accent: #b5851a;
+            --heading: #9a7418;
+            --accent: #c5a059;
+            --accent-bright: #b5851a;
             --muted: #6b7280;
-            --border: #d1d5db;
+            --border: #e3d4ac;
             --table-stripe: #f9fafb;
             --quote-bg: #fdf8ec;
             --btn-bg: #b5851a;
@@ -61,26 +63,47 @@
 
         .slide-content { max-width: 900px; margin: 0 auto; width: 100%; }
 
+        h1, h2, h3 {
+            font-family: 'Cinzel', Georgia, serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
         h1 {
             font-size: clamp(2rem, 6vw, 3.5rem);
             color: var(--heading);
             margin-bottom: 0.5em;
-            line-height: 1.2;
-            font-weight: 700;
+            line-height: 1.15;
+            font-weight: 900;
         }
 
         h2 {
-            font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+            font-size: clamp(1.2rem, 3.5vw, 1.7rem);
             color: var(--heading);
-            margin: 0.3em 0 0.6em;
+            margin: 0.3em 0 0.7em;
             line-height: 1.3;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.4em;
         }
 
         h3 {
-            font-size: clamp(1.1rem, 3vw, 1.4rem);
-            color: var(--accent);
-            margin: 1em 0 0.5em;
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: var(--accent-bright);
+            margin: 1em 0 0.6em;
             line-height: 1.3;
+            display: flex;
+            align-items: center;
+            gap: 0.6em;
+            letter-spacing: 0.02em;
+        }
+
+        h3::before {
+            content: "";
+            width: 18px;
+            height: 1px;
+            background: var(--accent-bright);
+            flex-shrink: 0;
         }
 
         p {
@@ -91,15 +114,28 @@
 
         .verse {
             font-weight: 700;
-            color: var(--heading);
+            color: var(--accent-bright);
             font-size: clamp(1.05rem, 2.8vw, 1.3rem);
             margin: 0.8em 0 0.2em;
+            padding-left: 0.8em;
+            border-left: 2px solid var(--accent);
+            font-style: italic;
         }
 
         ul, ol {
             margin: 0.6em 0 1.2em 1.5em;
             line-height: 2;
             font-size: clamp(1rem, 2.6vw, 1.15rem);
+        }
+
+        ul li { list-style: none; position: relative; padding-left: 1.4em; }
+        ul li::before {
+            content: "◆";
+            position: absolute;
+            left: 0;
+            top: 0.15em;
+            color: var(--accent);
+            font-size: 0.7em;
         }
 
         li { margin-bottom: 0.6em; }
@@ -115,35 +151,110 @@
         table { width: 100%; border-collapse: collapse; font-size: clamp(0.8rem, 2vw, 1rem); min-width: 320px; }
 
         th {
-            background: var(--accent);
+            background: var(--accent-bright);
             color: var(--btn-text);
             padding: 0.7em 0.8em;
             text-align: left;
             font-weight: 700;
             white-space: nowrap;
+            font-family: 'Cinzel', Georgia, serif;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.03em;
         }
 
         td { padding: 0.65em 0.8em; border-bottom: 1px solid var(--border); }
         tr:nth-child(even) td { background: var(--table-stripe); }
 
+        /* Cards verticais — substituem tabelas largas (3+ colunas) para evitar scroll lateral */
+        .table-card-list {
+            margin: 1.2em 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9em;
+        }
+
+        .table-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent-bright);
+            border-radius: var(--radius);
+            padding: 1em 1.2em;
+            box-shadow: var(--shadow);
+        }
+
+        .table-card-title {
+            font-family: 'Cinzel', Georgia, serif;
+            font-weight: 700;
+            color: var(--heading);
+            font-size: clamp(1.05rem, 2.8vw, 1.25rem);
+            margin-bottom: 0.6em;
+            padding-bottom: 0.5em;
+            border-bottom: 1px solid var(--border);
+            letter-spacing: 0.01em;
+        }
+
+        .table-card-field {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1em;
+            padding: 0.4em 0;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+        }
+
+        .table-card-field:not(:last-child) {
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .table-card-label {
+            color: var(--muted);
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            flex-shrink: 0;
+        }
+
+        .table-card-value {
+            color: var(--text);
+            font-weight: 600;
+            text-align: right;
+        }
+
         blockquote {
             background: var(--quote-bg);
             border-left: 4px solid var(--accent);
-            padding: 1em 1.2em;
-            margin: 1.2em 0;
+            padding: 1.3em 1.4em 1em;
+            margin: 1.6em 0 1.2em;
             border-radius: 0 var(--radius) var(--radius) 0;
             font-style: italic;
             color: #374151;
             line-height: 1.6;
             font-size: clamp(0.85rem, 2.2vw, 1rem);
+            position: relative;
+        }
+
+        blockquote::before {
+            content: '"';
+            position: absolute;
+            top: -0.3em;
+            left: 0.5em;
+            font-family: 'Cinzel', Georgia, serif;
+            font-size: 3rem;
+            color: var(--accent);
+            opacity: 0.35;
+            line-height: 1;
         }
 
         blockquote footer {
             margin-top: 0.6em;
             font-style: normal;
-            font-weight: 600;
-            color: var(--heading);
-            font-size: 0.9em;
+            font-weight: 700;
+            color: var(--accent-bright);
+            font-size: 0.85em;
+            font-family: 'Cinzel', Georgia, serif;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
 
         .glossary dt {
@@ -151,12 +262,16 @@
             color: var(--heading);
             margin-top: 0.9em;
             font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            font-family: 'Cinzel', Georgia, serif;
+            letter-spacing: 0.02em;
         }
         .glossary dd {
             margin-left: 1em;
             margin-bottom: 0.6em;
             line-height: 1.6;
             color: #374151;
+            border-left: 1px solid var(--border);
+            padding-left: 0.8em;
         }
 
         .nav-bar {
@@ -210,15 +325,39 @@
             text-align: center;
             min-height: 100%;
         }
+
+        .capa-eye {
+            width: clamp(72px, 18vw, 110px);
+            height: auto;
+            margin-bottom: 1.4rem;
+            filter: drop-shadow(0 0 18px rgba(197,160,89,0.45));
+        }
+        .capa-eye .eye-iris   { fill: var(--accent-bright); }
+        .capa-eye .eye-pupil  { fill: var(--heading); }
+        .capa-eye .eye-outline,
+        .capa-eye .eye-rays   { stroke: var(--accent); }
+        .capa-eye .eye-glint  { fill: #fff8e8; }
+
+        .capa-divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-bright), transparent);
+            margin: 1.1rem 0;
+            opacity: 0.8;
+        }
+
         .capa h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            margin-bottom: 0.2em;
-            text-shadow: 0 0 20px rgba(240,215,140,0.3);
+            font-size: clamp(2rem, 7vw, 3.6rem);
+            margin-bottom: 0.15em;
+            letter-spacing: 0.06em;
+            text-shadow: 0 0 25px rgba(197,160,89,0.35);
         }
         .capa .subtitle {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            color: var(--muted);
-            letter-spacing: 0.05em;
+            font-size: clamp(0.95rem, 2.8vw, 1.3rem);
+            color: var(--accent-bright);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
         .slide[data-img-slide="1"] { background: #ffffff !important; }
@@ -424,7 +563,7 @@
         (function() {
             const slidesData = [
                 // Slide 0 - Capa
-                `<div class="capa"><h1>👁️ Os Olhos da Sabedoria</h1><p class="subtitle">Um estudo sobre Daniel 7 e o Chifre Pequeno</p></div>`,
+                `<div class="capa"><svg class="capa-eye" viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg"><line class="eye-rays" x1="60" y1="2" x2="60" y2="14" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/><line class="eye-rays" x1="14" y1="35" x2="26" y2="35" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/><line class="eye-rays" x1="94" y1="35" x2="106" y2="35" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/><path class="eye-outline" d="M8,35 C8,35 28,8 60,8 C92,8 112,35 112,35 C112,35 92,62 60,62 C28,62 8,35 8,35 Z" fill="none" stroke-width="2.2"/><circle class="eye-iris" cx="60" cy="35" r="17"/><circle class="eye-pupil" cx="60" cy="35" r="8.5"/><circle class="eye-glint" cx="55.5" cy="30" r="3"/></svg><h1>Os Olhos da Sabedoria</h1><div class="capa-divider"></div><p class="subtitle">Um estudo sobre Daniel 7 e o Chifre Pequeno</p></div>`,
 
                 // Slide 1 - Parte 1: Introdução
                 `<h2>Parte 1 — A Sequência de Poderes em Daniel 7</h2><p>Uma visão rápida dos 4 animais de Daniel capítulo 7.</p>`,
@@ -509,6 +648,53 @@
                 slideshow.appendChild(slideDiv);
             });
 
+            // Converte todas as tabelas em cards verticais (mais legível, sem scroll lateral no mobile)
+            function convertWideTablesToCards() {
+                const wrappers = slideshow.querySelectorAll('.table-wrapper');
+                wrappers.forEach(wrapper => {
+                    const table = wrapper.querySelector('table');
+                    if (!table) return;
+                    const headCells = Array.from(table.querySelectorAll('thead th'));
+                    if (headCells.length < 2) return; // converte todas as tabelas em cards
+
+                    const headers = headCells.map(th => th.textContent.trim());
+                    const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+                    const cardList = document.createElement('div');
+                    cardList.className = 'table-card-list';
+
+                    rows.forEach(row => {
+                        const cells = Array.from(row.querySelectorAll('td')).map(td => td.textContent.trim());
+                        const card = document.createElement('div');
+                        card.className = 'table-card';
+
+                        // O primeiro campo vira o "título" do card
+                        const titleField = document.createElement('div');
+                        titleField.className = 'table-card-title';
+                        titleField.textContent = cells[0] || '';
+                        card.appendChild(titleField);
+
+                        for (let i = 1; i < headers.length; i++) {
+                            const field = document.createElement('div');
+                            field.className = 'table-card-field';
+                            const label = document.createElement('span');
+                            label.className = 'table-card-label';
+                            label.textContent = headers[i];
+                            const value = document.createElement('span');
+                            value.className = 'table-card-value';
+                            value.textContent = cells[i] || '—';
+                            field.appendChild(label);
+                            field.appendChild(value);
+                            card.appendChild(field);
+                        }
+                        cardList.appendChild(card);
+                    });
+
+                    wrapper.replaceWith(cardList);
+                });
+            }
+            convertWideTablesToCards();
+
             function goTo(newIndex, publish) {
                 if (publish === undefined) publish = true;
                 const allSlides = Array.from(slideshow.querySelectorAll('.slide'));
@@ -582,18 +768,68 @@
             posCancel.addEventListener('click', () => { pendingImageData = null; imgPosOverlay.classList.remove('open'); });
             imgPosOverlay.addEventListener('click', (e) => { if (e.target === imgPosOverlay) { pendingImageData = null; imgPosOverlay.classList.remove('open'); } });
 
-            function insertImageSlide(position) {
-                imgPosOverlay.classList.remove('open');
-                if (!pendingImageData) return;
-                const insertAt = position === 'before' ? currentSlide : currentSlide + 1;
+            // ── PERSISTÊNCIA DE IMAGENS (IndexedDB — suporta 50MB+ no mobile) ──
+            let _idb = null;
+            const IDB_NAME    = 'osOlhosDB';
+            const IDB_STORE   = 'images';
+            const IDB_VERSION = 1;
+
+            function _openIDB() {
+                return new Promise((resolve, reject) => {
+                    if (_idb) { resolve(_idb); return; }
+                    const req = indexedDB.open(IDB_NAME, IDB_VERSION);
+                    req.onupgradeneeded = (e) => {
+                        const db = e.target.result;
+                        if (!db.objectStoreNames.contains(IDB_STORE)) {
+                            db.createObjectStore(IDB_STORE, { keyPath: 'id', autoIncrement: true });
+                        }
+                    };
+                    req.onsuccess = (e) => { _idb = e.target.result; resolve(_idb); };
+                    req.onerror   = () => reject(req.error);
+                });
+            }
+
+            function _saveImagesToStorage() {
+                _openIDB().then(db => {
+                    const tx    = db.transaction(IDB_STORE, 'readwrite');
+                    const store = tx.objectStore(IDB_STORE);
+                    store.clear();
+                    slideshow.querySelectorAll('.slide[data-img-slide="1"]').forEach(sl => {
+                        const img       = sl.querySelector('img');
+                        const allSlides = Array.from(slideshow.querySelectorAll('.slide'));
+                        if (img) store.add({ dataUrl: img.src, name: img.alt, index: allSlides.indexOf(sl) });
+                    });
+                }).catch(() => {});
+            }
+
+            function _loadImagesFromStorage() {
+                _openIDB().then(db => {
+                    const tx    = db.transaction(IDB_STORE, 'readonly');
+                    const store = tx.objectStore(IDB_STORE);
+                    const req   = store.getAll();
+                    req.onsuccess = () => {
+                        const imgs = req.result;
+                        if (!imgs || !imgs.length) return;
+                        imgs.sort((a, b) => a.index - b.index);
+                        imgs.forEach(item => {
+                            pendingImageData = { dataUrl: item.dataUrl, name: item.name };
+                            _doInsertImageSlide('after', item.index - 1 < 0 ? 0 : item.index - 1, false);
+                        });
+                        pendingImageData = null;
+                    };
+                }).catch(() => {});
+            }
+            // ────────────────────────────────────────────────────────────────
+
+            function _buildImageSlide(dataUrl, name) {
                 const slideDiv = document.createElement('div');
                 slideDiv.className = 'slide';
                 slideDiv.dataset.imgSlide = '1';
                 const inner = document.createElement('div');
                 inner.className = 'slide-image-full';
                 const img = document.createElement('img');
-                img.src = pendingImageData.dataUrl;
-                img.alt = pendingImageData.name;
+                img.src = dataUrl;
+                img.alt = name;
 
                 const removeBtn = document.createElement('button');
                 removeBtn.className = 'slide-img-remove';
@@ -642,15 +878,28 @@
                 inner.appendChild(removeBtn);
                 inner.appendChild(copyBtn);
                 slideDiv.appendChild(inner);
+                return slideDiv;
+            }
 
+            function _doInsertImageSlide(position, refIndex, navigate) {
+                if (!pendingImageData) return;
+                const insertAt = position === 'before' ? refIndex : refIndex + 1;
+                const slideDiv = _buildImageSlide(pendingImageData.dataUrl, pendingImageData.name);
                 const allSlides = Array.from(slideshow.querySelectorAll('.slide'));
                 if (insertAt >= allSlides.length) {
                     slideshow.appendChild(slideDiv);
                 } else {
                     slideshow.insertBefore(slideDiv, allSlides[insertAt]);
                 }
+                if (navigate !== false) goTo(insertAt);
+            }
+
+            function insertImageSlide(position) {
+                imgPosOverlay.classList.remove('open');
+                if (!pendingImageData) return;
+                _doInsertImageSlide(position, currentSlide, true);
                 pendingImageData = null;
-                goTo(insertAt);
+                _saveImagesToStorage();
             }
 
             function removeImageSlide(slideEl) {
@@ -658,6 +907,7 @@
                 const idx = allSlides.indexOf(slideEl);
                 const wasActive = slideEl.classList.contains('active');
                 slideEl.remove();
+                _saveImagesToStorage();
                 const remaining = slideshow.querySelectorAll('.slide').length;
                 let nextIdx = wasActive ? Math.max(0, idx - 1) : currentSlide;
                 if (nextIdx >= remaining) nextIdx = remaining - 1;
@@ -666,6 +916,93 @@
 
             posBefore.addEventListener('click', () => insertImageSlide('before'));
             posAfter.addEventListener('click',  () => insertImageSlide('after'));
+
+            // Carrega imagens salvas ao abrir
+            _loadImagesFromStorage();
+
+            // ── LONG-PRESS EM VERSÍCULOS → YOUVERSION NVI ───────────────────
+            const VERSE_REGEX = /\b(Gênesis|Êxodo|Levítico|Números|Deuteronômio|Josué|Juízes|Rute|1\s*Samuel|2\s*Samuel|1\s*Reis|2\s*Reis|1\s*Crônicas|2\s*Crônicas|Esdras|Neemias|Ester|Jó|Salmos?|Provérbios|Eclesiastes|Cantares?|Isaías|Jeremias|Lamentações|Ezequiel|Daniel|Oséias|Joel|Amós|Obadias|Jonas|Miquéias|Naum|Habacuque|Sofonias|Ageu|Zacarias|Malaquias|Mateus|Marcos|Lucas|João|Atos|Romanos|1\s*Coríntios|2\s*Coríntios|Gálatas|Efésios|Filipenses|Colossenses|1\s*Tessalonicenses|2\s*Tessalonicenses|1\s*Timóteo|2\s*Timóteo|Tito|Filemom|Hebreus|Tiago|1\s*Pedro|2\s*Pedro|1\s*João|2\s*João|3\s*João|Judas|Apocalipse)\s+\d+[:\.]\d+(?:-\d+)?/gi;
+
+            const BOOK_MAP = {
+                'gênesis':'GEN','êxodo':'EXO','levítico':'LEV','números':'NUM','deuteronômio':'DEU',
+                'josué':'JOS','juízes':'JDG','rute':'RUT','1 samuel':'1SA','2 samuel':'2SA',
+                '1 reis':'1KI','2 reis':'2KI','1 crônicas':'1CH','2 crônicas':'2CH','esdras':'EZR',
+                'neemias':'NEH','ester':'EST','jó':'JOB','salmo':'PSA','salmos':'PSA',
+                'provérbios':'PRO','eclesiastes':'ECC','cantares':'SNG','cantare':'SNG',
+                'isaías':'ISA','jeremias':'JER','lamentações':'LAM','ezequiel':'EZK',
+                'daniel':'DAN','oséias':'HOS','joel':'JOL','amós':'AMO','obadias':'OBA',
+                'jonas':'JON','miquéias':'MIC','naum':'NAM','habacuque':'HAB',
+                'sofonias':'ZEP','ageu':'HAG','zacarias':'ZEC','malaquias':'MAL',
+                'mateus':'MAT','marcos':'MRK','lucas':'LUK','joão':'JHN','atos':'ACT',
+                'romanos':'ROM','1 coríntios':'1CO','2 coríntios':'2CO','gálatas':'GAL',
+                'efésios':'EPH','filipenses':'PHP','colossenses':'COL',
+                '1 tessalonicenses':'1TH','2 tessalonicenses':'2TH',
+                '1 timóteo':'1TI','2 timóteo':'2TI','tito':'TIT','filemom':'PHM',
+                'hebreus':'HEB','tiago':'JAS','1 pedro':'1PE','2 pedro':'2PE',
+                '1 joão':'1JN','2 joão':'2JN','3 joão':'3JN','judas':'JUD','apocalipse':'REV'
+            };
+
+            function _verseToYouVersion(verseText) {
+                const clean = verseText.trim();
+                const match = clean.match(/^(.+?)\s+(\d+)[:\.](\d+)/i);
+                if (!match) return null;
+                let bookRaw = match[1].toLowerCase().trim();
+                const chapter = match[2];
+                const verse   = match[3];
+                const bookCode = BOOK_MAP[bookRaw] || null;
+                if (!bookCode) return null;
+                return `youversion://bible?reference=${bookCode}.${chapter}.${verse}&version=NVI`;
+            }
+
+            function _verseToYouVersionFallback(verseText) {
+                const clean = verseText.trim();
+                const match = clean.match(/^(.+?)\s+(\d+)[:\.](\d+)/i);
+                if (!match) return null;
+                let bookRaw = match[1].toLowerCase().trim();
+                const chapter = match[2];
+                const verse   = match[3];
+                const bookCode = BOOK_MAP[bookRaw] || null;
+                if (!bookCode) return null;
+                return `https://www.bible.com/pt/bible/129/${bookCode}.${chapter}.${verse}`;
+            }
+
+            let _lpTimer = null;
+            let _lpActive = false;
+
+            document.addEventListener('touchstart', (e) => {
+                const el = e.target.closest('li, p, .verse, strong');
+                if (!el) return;
+                const txt = el.textContent || '';
+                const matches = txt.match(VERSE_REGEX);
+                if (!matches) return;
+                _lpActive = false;
+                _lpTimer = setTimeout(() => {
+                    _lpActive = true;
+                    const verse = matches[0];
+                    const deepLink = _verseToYouVersion(verse);
+                    const webLink  = _verseToYouVersionFallback(verse);
+                    if (deepLink) {
+                        const a = document.createElement('a');
+                        a.href = deepLink;
+                        a.style.display = 'none';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        if (webLink) setTimeout(() => { window.open(webLink, '_blank'); }, 1200);
+                    } else if (webLink) {
+                        window.open(webLink, '_blank');
+                    }
+                }, 600);
+            }, { passive: true });
+
+            document.addEventListener('touchend', () => {
+                clearTimeout(_lpTimer);
+            }, { passive: true });
+
+            document.addEventListener('touchmove', () => {
+                clearTimeout(_lpTimer);
+            }, { passive: true });
+            // ────────────────────────────────────────────────────────────────
 
         })();
     </script>
